@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>split landing page</title>
+</head>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .splitContainer{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+    .split{
+        position: absolute;
+        height: 100vh;
+        cursor: pointer;
+        
+       
+    }
+     .left::before{
+        content: '';
+        background-color: rgba(87,84,236,0.3);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+     }
+     .right::before{
+        content: '';
+        background-color: hsla(0, 0%, 17%, 0.5);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+     }
+    .right{
+        position: absolute;
+         width: 50%;
+         z-index: 2;
+        right: 0;
+         display: flex;
+        transition: width 0.5s linear;
+        align-items: center;
+        justify-content: center;
+        background-image: url(img/xbox.jpg);
+    }
+    .left{
+        width: 50%;
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+         background-image: url(img/ps.jpg);
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         transition: width 0.5s linear;
+         
+    }
+    #firstDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        z-index: 3;
+        
+
+    }
+  
+     #firstDiv h1{
+        color: white;
+     }
+    
+    .increase{
+        width: 70%;
+    }
+    .decrease{
+        width: 30%;
+    }
+    #button1{
+         border: 3px solid white;
+        padding: 15px;
+        background-color: transparent;
+        font-size: 1.3em;
+        color: white;
+        transition: 0.5s ease;
+    }
+    #button1:hover{
+        background-color: green;
+        border: none;
+    }
+     #button2{
+         border: 3px solid white;
+        padding: 15px;
+        background-color: transparent;
+        font-size: 1.3em;
+        color: white;
+        transition: 0.5s ease;
+    }
+    #button2:hover{
+        background-color: rgba(87, 84, 236, 1);
+        border: none;
+    }
+    @media (max-width:850px){
+      
+    #firstDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        z-index: 3;
+        
+    }
+  
+     #firstDiv h1{
+        color: white;
+        font-size: 1.3em;
+     }
+    }
+  
+  </style>
+<body>
+    <div class="splitContainer">
+        <div class="split right">
+               <div id="firstDiv">
+            <h1>XBox SeriesX</h1>
+            <button id="button1" class="btn">Buy Now</button>
+               </div>
+        </div>
+           
+        <div class="split left">
+          <div id="firstDiv">
+            <h1>Playstation 5</h1>
+            <button id="button2" class="btn">Buy Now</button>
+         </div>
+        </div>
+           
+    </div>
+</body>
+<script>
+    const split = document.querySelector('.split');
+    const button2 = document.getElementById('button2')
+    const btn = document.querySelector('.btn');
+    const right = document.querySelector('.right');
+    const left = document.querySelector('.left');
+        
+    btn.addEventListener('click', () => { 
+        right.classList.toggle('increase')
+        left.classList.toggle('decrease')
+    })
+     button2.addEventListener('click', () => { 
+        left.classList.toggle('increase')
+        right.classList.toggle('decrease')
+     })
+     right.addEventListener('mouseenter', () =>{
+     right.classList.add('increase')
+     left.classList.add('decrease')
+     })
+      right.addEventListener('mouseleave', () =>{
+     right.classList.remove('increase')
+     left.classList.remove('decrease')
+     })
+     left.addEventListener('mouseenter', () =>{
+        left.classList.toggle('increase')
+        right.classList.toggle('decrease')
+     })
+      left.addEventListener('mouseleave', () =>{
+          left.classList.toggle('increase')
+        right.classList.toggle('decrease')
+     })
+</script>
+</html>

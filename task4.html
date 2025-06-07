@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiddensearch</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: hsl(300, 100%, 60%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 0;
+        
+    }
+    input{
+        outline: 0;
+        width: 04%;
+        transform: translateY(-5%);
+        border: none;
+        transition: all 1s linear;
+        height: 17px;
+    }
+    input::placeholder{
+        margin-left: 20px;
+        color: blue;
+    }
+    button{
+        outline: 0;
+        transform: translateX(-25%);
+        border: none;
+    
+    }
+    input button{
+        outline: 0;
+        border: none;
+    }
+    input:focus{
+        border: none;
+        outline: 0;
+    }
+    button:focus{
+        border: none;
+        outline: 0;
+    }
+    input.open{
+        width: 70%;
+    }
+
+</style>
+<body>
+    <div>
+        <input class="inpuut" placeholder="search" type="text">
+        <button class="btn">&#128269;</button>
+    </div>
+      <a href="task5.html">task</a>
+
+
+    <script>
+        const input = document.querySelector('.inpuut');
+        const btn = document.querySelector('.btn')
+
+        btn.addEventListener('click', () =>{
+        
+        input.classList.toggle("open") 
+        
+        });
+        
+                
+            
+ 
+    
+    </script>
+</body>
+</html>
