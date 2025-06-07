@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Sound Board</title>
+    <style>
+    
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(161, 100, 223);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.btn {
+  background-color: rebeccapurple;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  margin: 1rem;
+  padding: 1.5rem 3rem;
+  font-size: 1.2rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:focus {
+  outline: none;
+}
+    </style>
+  </head>
+  <body>
+    <audio id="applause" src="sounds/applause.mp3"></audio>
+    <audio id="boo" src="sounds/boo.mp3"></audio>
+    <audio id="gasp" src="sounds/gasp.mp3"></audio>
+    <audio id="tada" src="sounds/tada.mp3"></audio>
+    <audio id="victory" src="sounds/victory.mp3"></audio>
+    <audio id="wrong" src="sounds/wrong.mp3"></audio>
+
+    <div id="buttons"></div>
+
+    <script>
+        const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong']
+         
+        sounds.forEach(sound => {
+            const btn = document.createElement('button')
+                btn.classList.add('btn')
+                btn.innerText = sound
+
+            btn.addEventListener('click', () => {
+                   stopSound() 
+                document.getElementById(sound).play();
+
+               
+            })
+             document.getElementById('buttons').appendChild(btn)
+
+         })
+         function stopSound() {
+            sounds.forEach(sound => {
+             
+            const song = document.getElementById(sound);
+
+            song.pause();
+            song.currentTime = 0
+            })
+        
+         }
+    setTimeout(() => {
+       const next = document.createElement("p");
+       next.innerHTML = ` captain dave is him<a href="task9 .html">task</a>`
+       document.body.appendChild(next);
+   }, 3000)
+    </script>
+  </body>
+</html>

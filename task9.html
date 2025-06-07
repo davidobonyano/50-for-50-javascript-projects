@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dad Jokes</title>
+  <style>
+    /* Your existing styles */
+    * { box-sizing: border-box; }
+    body {
+      background-color: #686de0;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      padding: 50px 20px;
+      max-width: 800px;
+      text-align: center;
+    }
+    h3 { margin: 0; opacity: 0.5; letter-spacing: 2px; }
+    .joke {
+      font-size: 30px;
+      margin: 50px auto;
+      max-width: 600px;
+    }
+    .btn {
+      background-color: #9f68e0;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 40px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn:focus { outline: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>Don't Laugh Challenge</h3>
+    <div id="joke" class="joke">// Joke goes here</div>
+    <button id="jokeBtn" class="btn">Get Another Joke</button>
+  </div>
+
+  <script>
+    // Select the joke container and button elements
+    const jokeEl = document.getElementById('joke');
+    const jokeBtn = document.getElementById('jokeBtn');
+
+    // Add click event listener to button to generate a new joke
+    jokeBtn.addEventListener('click', generateJoke);
+
+    // Generate a joke immediately on page load
+    generateJoke();
+
+    // Async function to fetch joke from API and update the page
+    async function generateJoke() {
+      // Set header to request JSON response from API
+      const config = {
+        headers: { Accept: 'application/json' }
+      };
+
+      try {
+        // Fetch the joke from API
+        const res = await fetch('https://icanhazdadjoke.com', config);
+
+        // Check if response is OK (status code 200-299)
+        if (!res.ok) {
+          throw new Error('Failed to fetch joke, status: ' + res.status);
+        }
+
+        // Parse the JSON from response
+        const data = await res.json();
+
+        // Update the joke element with the joke text or fallback message
+        jokeEl.textContent = data.joke || "Oops! No joke found.";
+      } catch (error) {
+        // If error happens, show a friendly message and log the error
+        jokeEl.textContent = "Sorry, we couldn't get a joke right now. Please try again later.";
+        console.error('Error fetching joke:', error);
+      }
+    }
+  </script>
+</body>
+</html>
