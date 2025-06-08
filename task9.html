@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dad Jokes</title>
   <style>
-    /* Your existing styles */
     * { box-sizing: border-box; }
     body {
       background-color: #686de0;
@@ -47,48 +46,40 @@
 </head>
 <body>
   <div class="container">
+    <a href="task11.html">task</a>
     <h3>Don't Laugh Challenge</h3>
     <div id="joke" class="joke">// Joke goes here</div>
     <button id="jokeBtn" class="btn">Get Another Joke</button>
   </div>
 
   <script>
-    // Select the joke container and button elements
+
     const jokeEl = document.getElementById('joke');
     const jokeBtn = document.getElementById('jokeBtn');
 
     // Add click event listener to button to generate a new joke
-    jokeBtn.addEventListener('click', generateJoke);
+     jokeBtn.addEventListener('click',generatejoke)
 
-    // Generate a joke immediately on page load
-    generateJoke();
-
-    // Async function to fetch joke from API and update the page
-    async function generateJoke() {
-      // Set header to request JSON response from API
+    generatejoke()
+    async function generatejoke() {
       const config = {
-        headers: { Accept: 'application/json' }
-      };
-
-      try {
-        // Fetch the joke from API
-        const res = await fetch('https://icanhazdadjoke.com', config);
-
-        // Check if response is OK (status code 200-299)
-        if (!res.ok) {
-          throw new Error('Failed to fetch joke, status: ' + res.status);
-        }
-
-        // Parse the JSON from response
-        const data = await res.json();
-
-        // Update the joke element with the joke text or fallback message
-        jokeEl.textContent = data.joke || "Oops! No joke found.";
-      } catch (error) {
-        // If error happens, show a friendly message and log the error
-        jokeEl.textContent = "Sorry, we couldn't get a joke right now. Please try again later.";
-        console.error('Error fetching joke:', error);
+        headers: {accept: "application/json"}
       }
+    
+      try{
+
+      const res = await fetch ("https://icanhazdadjoke.com", config)
+      
+      if (!res.ok){
+        throw new Error('Error fetching joke, status: ' + res.status);
+      }
+      const data = await res.json();
+      jokeEl.textContent = data.joke || "no internet connection"
+    }
+    catch(error){
+      jokeEl.textContent = 'unable to fetch joke'
+      console.error('Error:', error)
+    }
     }
   </script>
 </body>
