@@ -130,12 +130,10 @@
       box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
       overflow: hidden;
-      position: relative;
     }
 
     .movie img {
       width: 100%;
-      display: block;
     }
 
     .movie-info {
@@ -154,24 +152,7 @@
     .movie-info span.red { color: red; }
 
     .overview {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      color: #fff;
       padding: 1rem;
-      height: 0;
-      overflow: hidden;
-      transition: height 0.4s ease-in-out;
-    }
-
-    .movie:hover .overview {
-      height: 75%;
-    }
-
-    .movie.show-overview .overview {
-      height: 75%;
     }
 
     .overview small {
@@ -233,6 +214,7 @@
       <input type="text" id="search" class="search" placeholder="Search">
     </form>
 
+    <!-- Toggle Switch with Icons -->
     <div class="toggle-container">
       <label class="switch">
         <input type="checkbox" onchange="toggleTheme()" id="themeToggle">
@@ -262,6 +244,7 @@
     const trailerModal = document.getElementById('trailerModal');
     const trailerFrame = document.getElementById('trailerFrame');
     const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
 
     document.body.setAttribute('data-theme', 'dark');
 
@@ -271,10 +254,10 @@
       document.body.setAttribute('data-theme', isLight ? 'dark' : 'light');
       themeToggle.checked = !isLight;
     }
-
     window.addEventListener('DOMContentLoaded', () => {
       const isLight = document.body.getAttribute('data-theme') === 'light';
       themeToggle.checked = isLight;
+    
     });
 
     function closeTrailer() {
@@ -355,17 +338,6 @@
     function showTrailer(key) {
       trailerFrame.src = `https://www.youtube.com/embed/${key}`;
       trailerModal.style.display = 'flex';
-    }
-
-    // ✅ Mobile Tap Support for Overview Toggle
-    if (window.matchMedia("(hover: none)").matches) {
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".movie").forEach(movie => {
-          movie.addEventListener("click", () => {
-            movie.classList.toggle("show-overview");
-          });
-        });
-      });
     }
   </script>
 </body>
